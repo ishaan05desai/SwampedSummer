@@ -5,12 +5,25 @@ import Typo from "@/components/Typo";
 import { supabase } from "@/config/supabase";
 import { colors } from "@/constants/theme";
 import React, { useState } from "react";
+import { Alert } from "react-native";
 const drinktracker = () => {
   const [description, setDescription] = useState("");
   const [volume, setVolume] = useState("");
   const [alcoholContent, setAlcoholContent] = useState("");
+  const checkBAC = async () => {
+    const abv = parseFloat(alcoholContent);
+    console.log("Checking BAC:", abv);
+    if (isNaN(abv) || abv > 100 || abv < 0) {
+      Alert.alert(
+        "Invalid Alcohol Content",
+        "Please enter a valid percentage between 0 and 100."
+      );
+      return;
+    }
+    await handleLogDrink();
+  };
   const handleLogDrink = async () => {
-    const { data, error } = await supabase.from("drinks").insert([
+    const { error } = await supabase.from("drinks").insert([
       {
         user_id: "5ad68413-1f4a-40a0-9633-1c76b0000246",
         drink_name: description,
@@ -28,7 +41,6 @@ const drinktracker = () => {
   const [text, onChangeText] = React.useState();
   return (
     <ScreenWrapper>
-      {/* <BackButton style={{ paddingTop: 30 }}></BackButton> */}
       <Typo size={22} color={colors.neutral100} fontWeight={"600"}>
         Add a drink to log
       </Typo>
@@ -47,7 +59,7 @@ const drinktracker = () => {
         value={alcoholContent}
         onChangeText={setAlcoholContent}
       ></TextField>
-      <Button onPress={handleLogDrink}>
+      <Button onPress={checkBAC}>
         <Typo size={22} color={colors.neutral900} fontWeight={"600"}>
           Log Drink
         </Typo>

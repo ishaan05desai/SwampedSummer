@@ -17,7 +17,16 @@ const TextField = ({ label, value, onChangeText }: Props) => {
       value={value}
       onChangeText={onChangeText}
       style={styles.background}
-      theme={{ roundness: 20 }}
+      textColor="white"
+      theme={{
+        roundness: 20,
+        colors: {
+          primary: colors.neutral100, // focused outline
+          secondary: colors.neutral100,
+          placeholder: "gray", // placeholder label color
+          background: colors.neutral900,
+        },
+      }}
     />
   );
 };
@@ -26,6 +35,7 @@ const styles = StyleSheet.create({
   background: {
     backgroundColor: colors.neutral900,
     marginVertical: 8,
+    color: "white",
   },
 });
 

@@ -47,8 +47,8 @@ export default function CustomTabs({
           options.tabBarLabel !== undefined
             ? options.tabBarLabel
             : options.title !== undefined
-            ? options.title
-            : route.name;
+              ? options.title
+              : route.name;
 
         const isFocused = state.index === index;
 
@@ -74,6 +74,7 @@ export default function CustomTabs({
         return (
           <TouchableOpacity
             // href={buildHref(route.name, route.params)}
+            key={route.key}
             accessibilityState={isFocused ? { selected: true } : {}}
             accessibilityLabel={options.tabBarAccessibilityLabel}
             testID={options.tabBarButtonTestID}
