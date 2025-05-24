@@ -1,5 +1,6 @@
 import { colors } from "@/constants/theme";
 import { ScreenWrapperProps } from "@/types";
+import * as SystemUI from "expo-system-ui";
 import React from "react";
 import {
   Dimensions,
@@ -12,6 +13,7 @@ import {
 const { height } = Dimensions.get("window");
 const ScreenWrapper = ({ style, children }: ScreenWrapperProps) => {
   let paddingTop = Platform.OS == "ios" ? height * 0.06 : 0;
+  SystemUI.setBackgroundColorAsync(colors.neutral900); // Match your app's dark theme
   return (
     <View
       style={[
@@ -23,7 +25,11 @@ const ScreenWrapper = ({ style, children }: ScreenWrapperProps) => {
         style,
       ]}
     >
-      <StatusBar barStyle={"light-content"} />
+      <StatusBar
+        barStyle={"default"}
+        translucent={false}
+        backgroundColor={colors.neutral900}
+      />
       {children}
     </View>
   );

@@ -7,8 +7,10 @@ const index = () => {
   const router = useRouter();
   useEffect(() => {
     setTimeout(() => {
-      router.push("/drinktracker");
-    }, 0);
+      // router.push("/welcome");
+      router.replace("/(tabs)");
+      // theres an error here but it should run fine ^^
+    }, 1000);
   }, []);
   return (
     <View style={styles.container}>
