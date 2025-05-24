@@ -13,9 +13,10 @@ const drinktracker = () => {
   const handleLogDrink = async () => {
     const { data, error } = await supabase.from("drinks").insert([
       {
+        user_id: "5ad68413-1f4a-40a0-9633-1c76b0000246",
         drink_name: description,
         abv: parseFloat(alcoholContent),
-        volume_ml: Math.round(parseFloat(volume) * 29.5735),
+        volume_ml: parseFloat(volume) * 29.5735,
         timestamp: new Date().toISOString(),
       },
     ]);
