@@ -1,9 +1,8 @@
-import { supabase } from "@/app/supabase";
-import BackButton from "@/components/BackButton";
 import Button from "@/components/Button";
 import ScreenWrapper from "@/components/ScreenWrapper";
 import TextField from "@/components/TextField";
 import Typo from "@/components/Typo";
+import { supabase } from "@/config/supabase";
 import { colors } from "@/constants/theme";
 import React, { useState } from "react";
 const drinktracker = () => {
@@ -29,7 +28,7 @@ const drinktracker = () => {
   const [text, onChangeText] = React.useState();
   return (
     <ScreenWrapper>
-      <BackButton style={{ paddingTop: 30 }}></BackButton>
+      {/* <BackButton style={{ paddingTop: 30 }}></BackButton> */}
       <Typo size={22} color={colors.neutral100} fontWeight={"600"}>
         Add a drink to log
       </Typo>

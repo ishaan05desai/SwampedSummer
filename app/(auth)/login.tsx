@@ -24,6 +24,8 @@ const Login = () => {
     console.log("email: ", emailRef.current);
     console.log("password: ", passwordRef.current);
     console.log("good to go");
+    router.replace("/(tabs)");
+    // theres an error here but it should run fine ^^
   };
 
   const handleForgotPassword = async () => {
