@@ -3,18 +3,25 @@ import Button from "@/components/Button";
 import Input from "@/components/Input";
 import ScreenWrapper from "@/components/ScreenWrapper";
 import Typo from "@/components/Typo";
+import { supabase } from "@/config/supabase";
 import { colors, spacingX, spacingY } from "@/constants/theme";
 import { verticalScale } from "@/utils/styling";
 import { useRouter } from "expo-router";
 import * as Icons from "phosphor-react-native";
 import React, { useRef, useState } from "react";
 import { Alert, Pressable, StyleSheet, View } from "react-native";
-
 const Login = () => {
   const emailRef = useRef("");
   const passwordRef = useRef("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+
+  async function signInWithEmail() {
+    const { error } = await supabase.auth.signInWithPassword({
+      email: emailRef.current,
+      password: passwordRef.current,
+    });
+  }
 
   const handleSubmit = async () => {
     if (!emailRef.current || !passwordRef.current) {
@@ -24,6 +31,7 @@ const Login = () => {
     console.log("email: ", emailRef.current);
     console.log("password: ", passwordRef.current);
     console.log("good to go");
+    await signInWithEmail();
     router.replace("/(tabs)");
     // theres an error here but it should run fine ^^
   };
