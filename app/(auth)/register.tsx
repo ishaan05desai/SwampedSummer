@@ -40,7 +40,7 @@ const Register = () => {
     console.log("password: ", passwordRef.current);
     console.log("good to go");
     await signUpWithEmail();
-    router.replace("/(tabs)");
+    router.replace("/userinfo");
     // theres an error here but it should run fine ^^
   };
 

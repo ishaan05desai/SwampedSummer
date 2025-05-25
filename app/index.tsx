@@ -7,8 +7,8 @@ const index = () => {
   const router = useRouter();
   useEffect(() => {
     setTimeout(() => {
-      // router.push("/welcome");
-      router.replace("/(tabs)");
+      router.push("/welcome");
+      // router.replace("/(tabs)");
       // theres an error here but it should run fine ^^
     }, 1000);
   }, []);
